@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block content %}
+<div class="row">
+    <div class="col-xs-5">
+    <div class="card">
+        <!--
+      <img class="card-img-top" data-src="holder.js/100%x180/?text=Image cap" alt="Card image cap">
+      -->
+      <div class="card-block">
+        <h4 class="card-title">Host Detail</h4>
+        <p class="card-text">Host Detail.</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Hostname: {{host.hostname}}</li>
+        <li class="list-group-item">IP: {{host.ip}}</li>
+        <li class="list-group-item">OS: {{host.os}}</li>
+        <li class="list-group-item">Type: {{host.type}}</li>
+      </ul>
+      <div class="card-block">
+         <a  href="{% url 'host_edit' host.id %}" class="card-link">Edit</a>
+          <a href="{% url 'host_index' %}" class="card-link">index</a>
+      </div>
+    </div> <!-- end card div -->
+        </div> <!--col-xs-5 -->
+    </div> <!-- end class row-->
+{%endblock%}

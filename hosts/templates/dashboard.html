@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load guardian_tags %}
+{% block content %}
+
+<table id="table_id" class="display table-bordered" cellspacing="0" width="100%">
+    <thead><tr><th>id</th><th>hostname</th><th>ip</th><th>os.</th><th>type</th><th>created_at</th><th>action</th></tr></thead>
+    <tbody>
+    {% for host in hosts %}
+    <tr>
+        <td>{{host.id}}</td><td>{{host.hostname}}</td><td>{{host.ip}}</td><td>{{host.os}}</td><td>{{host.type}}</td><td>{{host.created_at|date:"Y-m-d"}}</td>
+        <td>
+            {% get_obj_perms user for host as "host_perms" %}
+            {% if "delete_host" in host_perms %}
+              <a href="{% url 'host_delete' host.id %}">Remove</a>
+            {% endif %}
+
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+{% block script %}
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+    $(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>
+
+{% endblock %}
