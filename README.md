@@ -1,7 +1,9 @@
 django example
 
 host create,delete,update
-django-guardian----  per object permissions for Django 
+
+django-guardian----  per object permissions for Django
+
 django-registration-redux----- a simple but extensible application providing user registration functionality for Django 
 powered websites
 
